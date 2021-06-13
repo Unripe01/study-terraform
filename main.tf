@@ -3,11 +3,7 @@ resource "aws_instance" "tf-ec2-sample1" {
  instance_type = "t2.micro"
  vpc_security_group_ids = [aws_security_group.tf_sg_sample1.id]
 
- user_data = <<EOF
-  #!/bin/bash
-  yum install -y httpd
-  systemctl start httpd.service
-EOF
+ user_data = file("./user_dat.sh")
 
  tags = {
   Name = "tf-ec2-sample1"
